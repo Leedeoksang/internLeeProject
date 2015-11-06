@@ -1,0 +1,66 @@
+.intromain-view {
+	width: 100%;
+	height: 1080px;
+	position: relative;
+
+	.login-container {
+		width: 50%;
+		height: 40%;
+		position: absolute;
+		left: 25%;
+		top: 30%;
+
+		.logo-container {
+			width: 100%;
+			height: 40%;
+			text-align: center;
+
+			#logo {
+				display: inline-block;
+				color: #93E7CD;
+				font-size: 32px;
+				padding-top: 32px;
+			}
+		}
+
+		.input-container {
+			width: 100%;
+			height: 40%;
+
+			.input {
+				height: 50%;
+				position: relative;
+				.input-title {
+					display: inline-block;
+					position: absolute;
+					left: 25%;
+					color: #878787;
+				}
+				.custom-input {
+					width: 50%;
+					height: 32px;
+					position: absolute;
+					border: 2px solid #93E7CD;
+					left: 25%;
+					top: calc(50% - 16px);	
+					font-size: 18px;
+					padding-left: 12px;
+				}
+			}
+		}
+
+		.button-container {
+			width: 100%;
+			height: 30%;
+			text-align: center;
+			padding-top: 32px;
+			.button {
+				display: inline-block;
+				width: 20%;
+				height: 32px;
+				line-height: 32px;
+				color: #878787;
+			}
+		}
+	}
+}
