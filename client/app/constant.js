@@ -89,7 +89,7 @@ angular.module('homeDashboardApp')
         		return domain + '/1.2/devices/' + uuid + '/status';
       		},
 		};
-	})(true))
+	})())
 
 	.constant('OAUTH', (function (isDev) {
 		var domain = 'https://enertalk-auth.encoredtech.com',
@@ -114,4 +114,4 @@ angular.module('homeDashboardApp')
       		'clientSecret'     : clientSecret
 		};
 
-	})(true));
+	})());

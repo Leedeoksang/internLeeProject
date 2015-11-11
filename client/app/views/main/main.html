@@ -1,34 +1,33 @@
-<div class="main-view">
+<div id="main-view" ng-style="{'height': height}">
 
-	<div id="panel"></div>
-	<!--
-	<div id="rooms-container">
-		<div id="canvas"></div>
-	</div>
-	-->
-	<!--
-	<div class="homemap-container">
-		<div class="header">
-			<span id="header-title">HOME Dashboard</span>
-			<span class="edit-button" ng-click="isEdit = !isEdit"></span>
-		</div>
-		<div id="canvas"></div>
-	</div>
-	
-	<div class="painting-container" ng-show="isEdit">
-		<div class="selection-header">
-			<span class="elem header" ng-repeat="elem in editHeaderList" ng-click="changeTab('first', $index)">{{elem.name}}</span>
-		</div>
+	<canvas id="glcanvas"></canvas>
 
-		<div class="selection-body">
-			<div class="appliance-container">
-				<span class="elem body" ng-repeat="elem in editHeaderList[selection.first].list" ng-click="changeTab('second', $index)">{{elem.name}}</span>
-			</div>
-		</div>
+	<div id="jarvis-container">
+		<jarvis></jarvis>
 	</div>
-	-->
+
+	<div id="panel-container">
+		<panel></panel>
+	</div>
+
 	<div id="usage-container" ng-show="!isEdit">
 		<music-visualizer music-name="testMusic"></music-visualizer>
 	</div>
 
 </div>	
+<script id="shader-fs" type="x-shader/x-fragment">
+	void main (void) {
+		gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+	}
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+	attribute vec3 aVertexPosition;
+
+  	uniform mat4 uMVMatrix;
+  	uniform mat4 uPMatrix;
+  
+  	void main(void) {
+    	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+  	}
+</script>

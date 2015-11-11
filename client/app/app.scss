@@ -45,8 +45,10 @@ html, body {
 
 // Component styles are injected through grunt
 // injector
+@import 'directives/jarvis/jarvis.scss';
+@import 'directives/music_editor/music_editor.scss';
 @import 'directives/music_visualizer/music_visualizer.scss';
-@import 'directives/realtime/realtime.scss';
+@import 'directives/panel/panel.scss';
 @import 'views/introMain/introMain.scss';
 @import 'views/main/main.scss';
 // endinjector

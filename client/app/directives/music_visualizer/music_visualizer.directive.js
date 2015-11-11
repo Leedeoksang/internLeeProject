@@ -50,7 +50,7 @@ angular.module('homeDashboardApp')
       				fbc_array = new Uint8Array(analyser.frequencyBinCount);
       				analyser.getByteFrequencyData(fbc_array);
       				ctx.clearRect(0, 0, canvas.width, canvas.height);
-      				ctx.fillStyle = '#878787';
+      				ctx.fillStyle = '#FFFFFF';
       				for (var i = 0; i < BARS; i += 1) {
       					bar_x = i * 5;
       					bar_width = 3;

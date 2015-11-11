@@ -1,133 +1,38 @@
 $bg1: #0D0606;
 $bg2: #3b4166;
 
-.main-view {
+#main-view {
 	width: 100%;
-	height: 1080px;
+	height: 100%;
 	position: relative;
-	background-image: url('../../assets/images/dashboard_background.jpg');
+	/*background-image: url('../../assets/images/background-image.jpg');
 	background-size: cover;
+*/	
+	#glcanvas {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 
-	#panel {
+	#jarvis-container {
+		width: 90%;
+		height: 45%;
+		position: absolute;
+		left: 5%;
+		top: 3%;
+		z-index: 3;
+	}
+
+	#panel-container {
 		width: 70%;
 		height: 40%;
 		position: absolute;
 		left: 2%;
 		bottom: 6%;
+		z-index: 3;
 	}
-	/*
-	background: -webkit-linear-gradient($bg1, $bg2);
-  	background: -o-linear-gradient($bg1, $bg2);
-  	background: -moz-linear-gradient($bg1, $bg2);
-  	background: linear-gradient($bg1, $bg2);
-	position: relative;
-
-	#rooms-container {
-		width: 60%;
-		height: 100%;
-		
-		#canvas {
-			width: 100%;
-			height: 100%;
-		}
-	}*/
-
-	/*
-	.homemap-container {
-		position: relative;
-		width: 70%;
-		height: 100%;
-
-		.header {
-			padding-top: 12px;
-			padding-bottom: 12px;
-			padding-right: 48px;
-
-			#header-title {
-				color: #000;
-				font-size: 32px;
-				color: #93E7CD;
-				padding-left: 20px;
-			}
-
-			.edit-button {
-				display: inline-block;
-				width: 20px;
-				height: 20px;
-				background-color: #dddddd;
-				border-radius: 50%;
-				float: right;
-			}
-		}*/
-
-		/*
-		.footer {
-			position: absolute;
-			width: calc(100% - 48px);
-			left: 0;
-			bottom: 0;
-			padding-top: 12px;
-			padding-bottom: 12px;
-			padding-right: 48px;
-
-			#delete-button {
-				direction: inline-block;
-				height: 20px;
-				color: #FFFFFF;
-				float: right;
-			}
-		}
-		*/
-		/*
-		#canvas {
-			width: 80%;
-			height: 80%;
-			position: relative;
-			left: 5%;
-			top: 5%;
-			border: 2px solid #93E7CD;
-			border-radius: 8px;
-			overflow: hidden;
-		}
-		.room {
-			position: absolute;
-		}
-	}
-
-	.painting-container {
-		width: 30%;
-		height: 100%;
-		border: 1px solid #000000;
-		right: 0;
-		top: 0;
-		position: absolute;
-
-		.elem {
-			display: inline-block;
-			width: 33.3%;
-			min-height: 60px;
-			line-height: 60px;
-			text-align: center;
-			color: #000000;
-			&.header {
-
-			}
-			&.body {
-				
-			}
-		}
-
-		.selection-header {
-			height: 60px;
-			background-color: #878787;
-			border-bottom: 1px solid #000000;
-
-		}
-		.selection-body {
-
-		}
-	}
-	*/
 
 	#usage-container {
 		position: absolute;
@@ -136,5 +41,18 @@ $bg2: #3b4166;
 		width: 20%;
 		height: 20%;
 		border-radius: 8px;
+		z-index: 3;
 	}
 }
+/*:before {
+	content: '';
+  position: absolute;
+  top: 0; left:0; right:0; bottom:0;
+  background: inherit;
+  z-index: 1;
+  filter: blur(6px); 
+  -webkit-filter: blur(6px); 
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  filter:url(#blur);
+}*/

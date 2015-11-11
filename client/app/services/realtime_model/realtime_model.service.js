@@ -1,14 +1,17 @@
 'use strict';
 
 angular.module('homeDashboardApp')
-	.service('realtimeModel', function ($q, api) {
-		var deferred = $q.defer();
-
-		function getModel (siteHash) {
+	.service('realtimeModel', function ($q, api, User, Util) {
+		var siteHash = User.uuid ? User.uuid : Util.localStorage.getObject('userData').uuid;
+		
+		function getModel () {
 			var deferred = $q.defer();
-
+			
 			api.getRealtimeUsage(siteHash).then(function (response) {
-				deferred.resolve(response);
+				var model = {
+					power: response.activePower / 1000
+				};
+				deferred.resolve(model);
 			});
 			return deferred.promise;
 		}

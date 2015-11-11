@@ -48,6 +48,17 @@ angular.module('homeDashboardApp')
 				});
 
 				return deferred.promise;
+			},
+			getMeteringUsage: function (siteHash) {
+				var deferred = $q.defer(),
+					requestData = {};
+
+				requestData.url = APIURL.meteringUsage(siteHash);
+				implementRequest(requestData).then(function (response) {
+					deferred.resolve(response);
+				});
+
+				return deferred.promise;
 			}
 		};
 	});
