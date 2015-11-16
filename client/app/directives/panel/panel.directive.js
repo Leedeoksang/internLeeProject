@@ -132,6 +132,7 @@ angular.module('homeDashboardApp')
 					            cy: function (d) { return d.cy; },
 					            r: function (d) { return d.r; },
 					            fill: '#FFFFFF',
+					            opacity: 0.2,
 					            id: function (d, i) { return 'circle' + (i + 1); }
 					            //opacity: 0.3
 					        });

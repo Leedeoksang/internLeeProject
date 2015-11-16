@@ -7,13 +7,23 @@ $bg2: #3b4166;
 	position: relative;
 	/*background-image: url('../../assets/images/background-image.jpg');
 	background-size: cover;
-*/	
-	#glcanvas {
+	*/	
+
+	#loading-window {
 		width: 100%;
 		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
+		z-index: 10;
+		position: relative;
+
+		.loading-guide {
+			width: 30%;
+			height: 10%;
+			position: absolute;
+			top: 45%;
+			left: 35%;
+			text-align: center;
+			font-size: 20px;
+		}
 	}
 
 	canvas {
@@ -34,8 +44,8 @@ $bg2: #3b4166;
 		width: 70%;
 		height: 40%;
 		position: absolute;
-		left: 2%;
-		bottom: 6%;
+		left: 15%;
+		top: 6%;
 		z-index: 3;
 	}
 
@@ -49,15 +59,3 @@ $bg2: #3b4166;
 		z-index: 3;
 	}
 }
-/*:before {
-	content: '';
-  position: absolute;
-  top: 0; left:0; right:0; bottom:0;
-  background: inherit;
-  z-index: 1;
-  filter: blur(6px); 
-  -webkit-filter: blur(6px); 
-  -moz-filter: blur(6px);
-  -o-filter: blur(6px);
-  filter:url(#blur);
-}*/
