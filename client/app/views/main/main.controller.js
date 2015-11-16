@@ -66,23 +66,29 @@ angular.module('homeDashboardApp')
       
       car = new THREE.Car();
       car.callback = function (object) {
+        //addCar(object, 0, 200, 2500);
         console.log(object);
-        addCar(object, 0, 200, 1600);
+        object.root.position.set(0, 200, 2500);
+        object.root.rotation.set(0, Math.PI, 0);
+        console.log(object);
+        scene.add(object.root);
         //setMaterialsCar();
 
       };
+      car.loadPartsBinary( "../../bower_components/threejs/examples/obj/veyron/parts/veyron_body_bin.js", "../../bower_components/threejs/examples/obj/veyron/parts/veyron_wheel_bin.js" );
 
       loader = new THREE.OBJLoader();
       loader.load(
         '../../assets/3dmodels/ferrari_599gtb.obj',
         //'../../assets/3dmodels/ferrari_599gtb.mtl',
         function (object) {
+          /*
           object.position.y = 100;
           object.rotation.y = 3.141592;
           object.position.z = 1900;
 
           scene.add( object );
-
+          */
           renderer = new THREE.WebGLRenderer();
           renderer.setPixelRatio( $window.devicePixelRatio );
           renderer.setSize($window.innerWidth, $window.innerHeight);
@@ -142,5 +148,21 @@ angular.module('homeDashboardApp')
         object.root.position.set( x, y, z );
         scene.add( object.root );
     }
+
+    document.addEventListener('keydown', keyDownEvent);
+    document.addEventListener('keyup', keyUpEvent);
+
+    function keyDownEvent (event) {
+      switch(event.keyIdentifier) {
+        case 'Left': 
+          break;
+        case 'Right':
+          break;
+      }
+    }
+    function keyUpEvent (event) {
+      
+    }
+
 
 	});	
