@@ -1,11 +1,31 @@
 'use strict';
 
 angular.module('homeDashboardApp')
-  	.directive('jarvis', function () {
+  	.directive('jarvis', function ($interval, $rootScope) {
     	return {
       		templateUrl: 'app/directives/jarvis/jarvis.html',
       		restrict: 'EA',
+      		scope: {
+      			isCounting: '='
+      		},
       		link: function (scope, element, attrs) {
+      			scope.init = function () {
+      				var countInterval;
+
+      				scope.startText = 3;
+      				countInterval = $interval(function () {
+      					if (scope.startText === 1) {
+      						$rootScope.$emit('isCounting');
+      						scope.startText -= 1;
+      					} else if (scope.startText === 0) {
+      						$interval.cancel(countInterval);
+      					} else {
+	      					scope.startText -= 1;
+	      				}
+      				}, 1000);
+      			};
+      			scope.init();
+      			/*
       			var target = document.getElementById('jarvis-canvas'),
       				svg = d3.select('#jarvis-canvas')
       					.append('svg')
@@ -120,7 +140,7 @@ angular.module('homeDashboardApp')
       				getRightLine();
       			};
 
-      			scope.init();
+      			scope.init();*/
       		}
     	};
   	});

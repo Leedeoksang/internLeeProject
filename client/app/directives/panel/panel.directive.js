@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('homeDashboardApp')
-  	.directive('panel', function (User, Util, panelModel, realtimeModel, $interval, $timeout) {
+  	.directive('panel', function (User, Util, panelModel, realtimeModel, $interval, $timeout, $rootScope) {
     	return {
       		templateUrl: 'app/directives/panel/panel.html',
       		restrict: 'EA',
+      		scope: {
+      			model: '='
+      		},
       		link: function (scope, element, attrs) {
       			var target = document.getElementById('panel'),
       				svg,
@@ -29,11 +32,12 @@ angular.module('homeDashboardApp')
 						scope.update(2, 162, responses[1].maxLimitUsage, responses[1].meteringPeriodUsage);
 						//scope.update(3, 225, 800, responses[2].meteringPeriodUsage);
 						scope.update(4, 225, 600, responses[3].power);
-
+						$rootScope.$emit('realtimeData', responses[3]);
 						
 						scope.realtimeInterval = $interval(function () {
 							realtimeModel.getModel().then(function (response) {
 								scope.update(4, 225, 600, response.power);
+								$rootScope.$emit('realtimeData', response);
 							});
 						}, 1000);
 

@@ -5,16 +5,15 @@
 	</div>
 	-->
 	<div id="3d-canvas"></div>
-	<!--
-	<div id="jarvis-container">
+	
+	<div id="jarvis-container" ng-if="!initCameraAnimation">
 		<jarvis></jarvis>
 	</div>
-	-->
-	<!--
-	<div id="panel-container">
+	
+	<div id="panel-container" ng-if="!initCameraAnimation && !isCounting">
 		<panel></panel>
 	</div>
--->
+
 	<!--
 	<div id="usage-container" ng-show="!isEdit">
 		<music-visualizer music-name="testMusic"></music-visualizer>
