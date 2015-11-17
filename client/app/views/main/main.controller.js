@@ -2,7 +2,8 @@
 
 angular.module('homeDashboardApp')
   .controller('MainCtrl', function ($scope, $window) {
-    var scene,
+    var target = document.getElementById('3d-canvas'),
+      scene,
       camera,
       renderer,
       light,
@@ -27,14 +28,17 @@ angular.module('homeDashboardApp')
       ambient,
       groundTexture,
       skyTexture,
-      car;
+      car,
+      controlsCar = {
+        moveLeft: false,
+        moveRight: false
+      },
+      clock = new THREE.Clock();
 
     $scope.height = $window.innerHeight + 'px';
     $scope.isLoading = true;
 
     function init () {
-      var target = document.getElementById('3d-canvas');
-
       scene = new THREE.Scene();
       //scene.fog = new THREE.Fog(0x000000, 1, 20000);
 
@@ -67,28 +71,24 @@ angular.module('homeDashboardApp')
       car = new THREE.Car();
       car.callback = function (object) {
         //addCar(object, 0, 200, 2500);
-        console.log(object);
         object.root.position.set(0, 200, 2500);
         object.root.rotation.set(0, Math.PI, 0);
-        console.log(object);
         scene.add(object.root);
         //setMaterialsCar();
-
       };
       car.loadPartsBinary( "../../bower_components/threejs/examples/obj/veyron/parts/veyron_body_bin.js", "../../bower_components/threejs/examples/obj/veyron/parts/veyron_wheel_bin.js" );
-
+      /*
       loader = new THREE.OBJLoader();
       loader.load(
         '../../assets/3dmodels/ferrari_599gtb.obj',
-        //'../../assets/3dmodels/ferrari_599gtb.mtl',
         function (object) {
-          /*
+          
           object.position.y = 100;
           object.rotation.y = 3.141592;
           object.position.z = 1900;
 
           scene.add( object );
-          */
+          
           renderer = new THREE.WebGLRenderer();
           renderer.setPixelRatio( $window.devicePixelRatio );
           renderer.setSize($window.innerWidth, $window.innerHeight);
@@ -104,7 +104,7 @@ angular.module('homeDashboardApp')
         function ( xhr ) {
           console.log( 'An error happened' );
         });
-
+      */
       planeGeometry = new THREE.PlaneGeometry(1500, 30000);
       planeMaterial = new THREE.MeshPhongMaterial({color: 0x878787, side: THREE.DoubleSide});
       plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -141,8 +141,26 @@ angular.module('homeDashboardApp')
       scene.add(plane4);
 
       scene.add(planeLine);
+
+      renderer = new THREE.WebGLRenderer();
+      renderer.setPixelRatio( $window.devicePixelRatio );
+      renderer.setSize($window.innerWidth, $window.innerHeight);
+      target.appendChild(renderer.domElement);
+    }
+
+    function render () {
+      var delta = clock.getDelta();
+
+      car.updateCarModel(delta, controlsCar);
+      renderer.render( scene, camera );
+    }
+
+    function animate () {
+      requestAnimationFrame( animate );
+      render();
     }
     init();
+    animate();
 
     function addCar( object, x, y, z, s ) {
         object.root.position.set( x, y, z );
@@ -153,15 +171,36 @@ angular.module('homeDashboardApp')
     document.addEventListener('keyup', keyUpEvent);
 
     function keyDownEvent (event) {
-      switch(event.keyIdentifier) {
+      switch (event.keyIdentifier) {
+        case 'Up':
+          controlsCar.moveForward = true;
+          break;
+        case 'Down':
+          controlsCar.moveBackward = true;
+          break;
         case 'Left': 
+          controlsCar.moveLeft = true;
           break;
         case 'Right':
+          controlsCar.moveRight = true;
           break;
       }
     }
     function keyUpEvent (event) {
-      
+      switch (event.keyIdentifier) {
+        case 'Up':
+          controlsCar.moveForward = false;
+          break;
+        case 'Down':
+          controlsCar.moveBackward = false;
+          break;
+        case 'Left':
+          controlsCar.moveLeft = false;
+          break;
+        case 'Right':
+          controlsCar.moveRight = false;
+          break;
+      }
     }
 
 
